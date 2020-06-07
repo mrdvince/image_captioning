@@ -1,4 +1,4 @@
-# Computer Vision Nanodegree Project
+# Image Captioning
 
 This repository contains code and materials for Udacity's [Computer Vision Nanodegree](https://www.udacity.com/course/computer-vision-nanodegree--nd891) image captioning project. The notebook depend on a number of software packages to run, and so, we suggest that you create a local environment with these dependencies by following the instructions below.
 
