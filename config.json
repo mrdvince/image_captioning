@@ -1,13 +1,13 @@
 {
-    "name": "Mnist_LeNet",
+    "name": "Image_Captioning",
     "n_gpu": 1,
 
     "arch": {
-        "type": "MnistModel",
+        "type": "ImageCap",
         "args": {}
     },
     "data_loader": {
-        "type": "MnistDataLoader",
+        "type": "CoCoDataLoader",
         "args":{
             "data_dir": "/mnt/c/Users/eggy/Downloads/Compressed/coco_sample/coco_sample",
             "batch_size": 128,
@@ -24,9 +24,9 @@
             "amsgrad": true
         }
     },
-    "loss": "nll_loss",
+    "loss": "cross_entropy",
     "metrics": [
-        "accuracy", "top_k_acc"
+        "accuracy", "accuracy"
     ],
     "lr_scheduler": {
         "type": "StepLR",
