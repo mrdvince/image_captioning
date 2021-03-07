@@ -1,4 +1,6 @@
 from torchvision import datasets, transforms
+import sys
+sys.path.append('../')
 from base import BaseDataLoader
 from torch.utils.data import Dataset
 import nltk
@@ -145,7 +147,16 @@ class CoCoDataLoader(BaseDataLoader):
         cocoapi_loc='../data',
     ):
         trsfm = transforms.Compose(
-            [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
+            [
+                transforms.Resize(256),  # smaller edge of image resized to 256
+                transforms.RandomCrop(224),  # get 224x224 crop from random location
+                transforms.RandomHorizontalFlip(),  # horizontally flip image with probability=0.5
+                transforms.ToTensor(),  # convert the PIL Image to a tensor
+                transforms.Normalize(
+                    (0.485, 0.456, 0.406),  # normalize image for pre-trained model
+                    (0.229, 0.224, 0.225),
+                ),
+            ]
         )
         self.data_dir = data_dir
 
