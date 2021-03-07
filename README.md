@@ -1,7 +1,5 @@
 # Image Captioning
 
-This repository contains code and materials for Udacity's [Computer Vision Nanodegree](https://www.udacity.com/course/computer-vision-nanodegree--nd891) image captioning project. The notebook depend on a number of software packages to run, and so, we suggest that you create a local environment with these dependencies by following the instructions below.
-
 # Configure and Manage Your Environment with Anaconda
 
 Per the Anaconda [docs](http://conda.pydata.org/docs):
@@ -53,10 +51,7 @@ These instructions also assume you have `git` installed for working with Github 
 ```
 conda install git
 ```
-
-If you'd like to learn more about version control and using `git` from the command line, take a look at our [free course: Version Control with Git](https://www.udacity.com/course/version-control-with-git--ud123).
-
-**Now, we're ready to create our local environment!**
+**Create our local environment!**
 
 1. Clone the repository, and navigate to the downloaded folder. This may take a minute or two to clone due to the included image data.
 ```
@@ -98,16 +93,13 @@ pip install -r requirements.txt
 
 7. That's it!
 
-Now all of the `imgcap` libraries are available to you. Assuming you're environment is still activated, you can navigate to the Exercises repo and start looking at the notebooks:
+Now all of the `imgcap` libraries are available
 
 ```
 cd
 cd image-captioning
-jupyter notebook
+python train.py -c config.json
 ```
-
-To exit the environment when you have completed your work session, simply close the terminal window.
-
 
 ### Notes on environment creation and deletion
 
