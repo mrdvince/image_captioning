@@ -25,8 +25,9 @@ def main(config):
     data_loader = config.init_obj('data_loader', module_data)
     valid_data_loader = data_loader.split_validation()
 
+    vocab_size = len(data_loader.dataset.vocab)
     # build model architecture, then print to console
-    model = config.init_obj('arch', module_arch)
+    model = config.init_obj('arch', module_arch,vocab_size = len(data_loader.dataset.vocab))
     logger.info(model)
 
     # prepare for (multi-device) GPU training

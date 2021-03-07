@@ -13,7 +13,7 @@ class Vocabulary(object):
         start_word='<start>',
         end_word='<end>',
         unk_word='<unk>',
-        annotations_file='/mnt/c/Users/eggy/Downloads/Compressed/coco_sample/coco_sample/annotations/train_sample.json',
+        annotations_file='/content/image-captioning/data/annotations/captions_train2014.json',
         vocab_from_file=False,
     ):
         self.vocab_threshold = vocab_threshold
@@ -37,8 +37,8 @@ class Vocabulary(object):
             self.build_vocab()
             with open(self.vocab_file, 'wb') as f:
                 pickle.dump(self, f)
-
     def build_vocab(self):
+        """Populate the dictionaries for converting tokens to integers (and vice-versa)."""
         self.init_vocab()
         self.add_word(self.start_word)
         self.add_word(self.end_word)
@@ -46,17 +46,20 @@ class Vocabulary(object):
         self.add_captions()
 
     def init_vocab(self):
+        """Initialize the dictionaries for converting tokens to integers (and vice-versa)."""
         self.word2idx = {}
         self.idx2word = {}
         self.idx = 0
 
     def add_word(self, word):
+        """Add a token to the vocabulary."""
         if not word in self.word2idx:
             self.word2idx[word] = self.idx
             self.idx2word[self.idx] = word
             self.idx += 1
 
     def add_captions(self):
+        """Loop over training captions and add all tokens to the vocabulary that meet or exceed the threshold."""
         coco = COCO(self.annotations_file)
         counter = Counter()
         ids = coco.anns.keys()
@@ -64,14 +67,15 @@ class Vocabulary(object):
             caption = str(coco.anns[id]['caption'])
             tokens = nltk.tokenize.word_tokenize(caption.lower())
             counter.update(tokens)
-            
+
             if i % 100000 == 0:
                 print("[%d/%d] Tokenizing captions..." % (i, len(ids)))
+
         words = [word for word, cnt in counter.items() if cnt >= self.vocab_threshold]
 
         for i, word in enumerate(words):
             self.add_word(word)
-        
+
     def __call__(self, word):
         if not word in self.word2idx:
             return self.word2idx[self.unk_word]

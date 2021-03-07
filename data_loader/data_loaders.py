@@ -6,7 +6,7 @@ from torch.utils.data import Dataset
 import nltk
 import os
 import torch
-from vocabulary import Vocabulary
+from .vocabulary import Vocabulary
 from PIL import Image
 from pycocotools.coco import COCO
 import numpy as np
@@ -14,7 +14,7 @@ from tqdm import tqdm
 import random
 import json
 
-
+nltk.download('punkt')
 class CoCoDataset(Dataset):
     def __init__(
         self,
@@ -138,7 +138,7 @@ class CoCoDataLoader(BaseDataLoader):
         num_workers=1,
         training=True,
         mode='train',
-        vocab_threshold=None,
+        vocab_threshold=4,
         vocab_file='./vocab.pkl',
         start_word="<start>",
         end_word="<end>",
@@ -172,8 +172,8 @@ class CoCoDataLoader(BaseDataLoader):
                 assert os.path.exists(
                     vocab_file
                 ), "vocab_file does not exist.  Change vocab_from_file to False to create vocab_file."
-            img_folder = '../data/train2014/'
-            annotations_file = '../data/annotations/captions_train2014.json'
+            img_folder = '/content/image-captioning/data/train2014'
+            annotations_file = '/content/image-captioning/data/annotations/captions_train2014.json'
         if mode == 'test':
             assert (
                 batch_size == 1
