@@ -7,7 +7,7 @@ from torchvision import models
 
 
 class ImageCap(BaseModel):
-    def __init__(self, embed_size, hidden_size, vocab_size, num_layers=1):
+    def __init__(self,  vocab_size,embed_size=300, hidden_size=512, num_layers=1):
         super(ImageCap, self).__init__()
         ## encoder
         resnet = models.resnet50(pretrained=True)

@@ -1,6 +1,9 @@
 {
     "name": "Image_Captioning",
     "n_gpu": 1,
+    "embed_size":300, 
+    "hidden_size":512,
+    "vocab_size": 1,
 
     "arch": {
         "type": "ImageCap",
@@ -9,7 +12,7 @@
     "data_loader": {
         "type": "CoCoDataLoader",
         "args":{
-            "data_dir": "/mnt/c/Users/eggy/Downloads/Compressed/coco_sample/coco_sample",
+            "data_dir": "/content/image-captioning/data",
             "batch_size": 128,
             "shuffle": true,
             "validation_split": 0.1,
