@@ -55,8 +55,8 @@ conda install git
 
 1. Clone the repository, and navigate to the downloaded folder. This may take a minute or two to clone due to the included image data.
 ```
-https://github.com/Droid021/image-captioning
-cd image-captioning
+https://github.com/mrdvince/image_captioning
+cd image_captioning
 ```
 
 2. Create (and activate) a new environment, named `imgcap` with Python 3.6. If prompted to proceed with the install `(Proceed [y]/n)` type y.
@@ -97,7 +97,7 @@ Now all of the `imgcap` libraries are available
 
 ```
 cd
-cd image-captioning
+cd image_captioning
 python train.py -c config.json
 ```
 
